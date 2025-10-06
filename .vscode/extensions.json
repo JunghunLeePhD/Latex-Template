@@ -1,0 +1,6 @@
+// .vscode/extensions.json
+{
+  "recommendations": [
+    "vscodevim.vim" // Optional, for users who want it
+  ]
+}

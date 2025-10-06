@@ -1,0 +1,72 @@
+{
+  "name": "LaTeX Development Container",
+  // Tells VS Code to build the container from the Dockerfile in this directory
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  // Configure VS Code inside the container
+  "customizations": {
+    "vscode": {
+      // A list of extensions to automatically install inside the container
+      "extensions": ["james-yu.latex-workshop"],
+
+      // Default settings for VS Code inside the container
+      "settings": {
+        // --- Start pasting your settings here ---
+
+        "vim.relativenumber": true,
+        "vim.easymotion": true,
+        "vim.incsearch": true,
+        "vim.useSystemClipboard": true,
+        "vim.useCtrlKeys": true,
+        "vim.hlsearch": true,
+        "vim.insertModeKeyBindings": [
+          {
+            "before": ["j", "k"],
+            "after": ["<Esc>"]
+          }
+        ],
+        "vim.normalModeKeyBindingsNonRecursive": [
+          {
+            "before": ["<leader>", "d"],
+            "after": ["d", "d"]
+          },
+          {
+            "before": ["<C-n>"],
+            "commands": [":nohl"]
+          }
+        ],
+        "vim.leader": "<space>",
+        "vim.handleKeys": {
+          "<C-a>": false,
+          "<C-f>": false
+        },
+        "editor.lineNumbers": "relative",
+
+        // Tell LaTeX Workshop to use latexmk for building
+        "latex-workshop.latex.tools": [
+          {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+              "-synctex=1",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "-pdf",
+              "-outdir=%OUTDIR%",
+              "%DOC%"
+            ]
+          }
+        ],
+        // Set the default build recipe
+        "latex-workshop.latex.recipes": [
+          {
+            "name": "latexmk",
+            "tools": ["latexmk"]
+          }
+        ]
+      }
+    }
+  }
+}
