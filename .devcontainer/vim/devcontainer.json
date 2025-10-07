@@ -1,20 +1,14 @@
 {
   "name": "LaTeX Development Container",
-  // Tells VS Code to build the container from the Dockerfile in this directory
   "build": {
-    "dockerfile": "Dockerfile"
+    "dockerfile": "../Dockerfile", // Points to the shared Dockerfile
+    "context": "../.." // The build context is the root of the project
   },
-
-  // Configure VS Code inside the container
   "customizations": {
     "vscode": {
-      // A list of extensions to automatically install inside the container
-      "extensions": ["james-yu.latex-workshop"],
-
-      // Default settings for VS Code inside the container
+      "extensions": ["james-yu.latex-workshop", "vscodevim.vim"],
       "settings": {
-        // --- Start pasting your settings here ---
-
+        // Your personal Vim settings are included here as per your request
         "vim.relativenumber": true,
         "vim.easymotion": true,
         "vim.incsearch": true,
@@ -44,7 +38,7 @@
         },
         "editor.lineNumbers": "relative",
 
-        // Tell LaTeX Workshop to use latexmk for building
+        // --- LaTeX Workshop Configuration ---
         "latex-workshop.latex.tools": [
           {
             "name": "latexmk",
@@ -54,12 +48,14 @@
               "-interaction=nonstopmode",
               "-file-line-error",
               "-pdf",
-              "-outdir=%OUTDIR%",
+              // Use an absolute path to the workspace's output folder
+              "-outdir=%WORKSPACE_FOLDER%/output",
+              // ✅ FIX: Explicitly set the auxiliary directory to the same place
+              "-auxdir=%WORKSPACE_FOLDER%/output",
               "%DOC%"
             ]
           }
         ],
-        // Set the default build recipe
         "latex-workshop.latex.recipes": [
           {
             "name": "latexmk",
