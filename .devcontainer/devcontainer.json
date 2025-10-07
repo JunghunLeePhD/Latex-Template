@@ -1,43 +1,16 @@
 {
-  "name": "LaTeX (Vim)",
+  "name": "LaTeX (Standard)",
   "build": {
-    "dockerfile": "Dockerfile" // Points to the shared Dockerfile
+    "dockerfile": "Dockerfile"
   },
   "customizations": {
     "vscode": {
-      "extensions": ["james-yu.latex-workshop", "vscodevim.vim"],
+      "extensions": ["james-yu.latex-workshop"],
       "settings": {
-        // Your personal Vim settings are included here as per your request
-        "vim.relativenumber": true,
-        "vim.easymotion": true,
-        "vim.incsearch": true,
-        "vim.useSystemClipboard": true,
-        "vim.useCtrlKeys": true,
-        "vim.hlsearch": true,
-        "vim.insertModeKeyBindings": [
-          {
-            "before": ["j", "k"],
-            "after": ["<Esc>"]
-          }
-        ],
-        "vim.normalModeKeyBindingsNonRecursive": [
-          {
-            "before": ["<leader>", "d"],
-            "after": ["d", "d"]
-          },
-          {
-            "before": ["<C-n>"],
-            "commands": [":nohl"]
-          }
-        ],
-        "vim.leader": "<space>",
-        "vim.handleKeys": {
-          "<C-a>": false,
-          "<C-f>": false
-        },
-        "editor.lineNumbers": "relative",
-
-        // --- LaTeX Workshop Configuration ---
+        "latex-workshop.latex.formatting.provider": "latexindent",
+        "latex-workshop.latex.autoClean.run": "onBuilt",
+        "latex-workshop.latex.autoBuild.run": "onSave",
+        "latex-workshop.view.pdf.viewer": "tab",
         "latex-workshop.latex.tools": [
           {
             "name": "latexmk",
@@ -47,9 +20,7 @@
               "-interaction=nonstopmode",
               "-file-line-error",
               "-pdf",
-              // Use an absolute path to the workspace's output folder
               "-outdir=%WORKSPACE_FOLDER%/output",
-              // ✅ FIX: Explicitly set the auxiliary directory to the same place
               "-auxdir=%WORKSPACE_FOLDER%/output",
               "%DOC%"
             ]
@@ -65,3 +36,4 @@
     }
   }
 }
+

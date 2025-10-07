@@ -10,6 +10,8 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     # ---- Core Build Tool ----
     latexmk \
+    chktex \
+    texlive-extra-utils\
     \
     # ---- Base System & Common Packages ----
     # Includes the LaTeX kernel, article/book classes, graphicx, etc.
@@ -42,3 +44,4 @@ RUN apt-get update && \
 
 # Revert DEBIAN_FRONTEND to default
 ENV DEBIAN_FRONTEND=dialog
+
