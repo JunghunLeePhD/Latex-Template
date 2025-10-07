@@ -1,8 +1,7 @@
 {
-  "name": "LaTeX Development Container",
+  "name": "LaTeX (Vim)",
   "build": {
-    "dockerfile": "../Dockerfile", // Points to the shared Dockerfile
-    "context": "../.." // The build context is the root of the project
+    "dockerfile": "Dockerfile" // Points to the shared Dockerfile
   },
   "customizations": {
     "vscode": {
