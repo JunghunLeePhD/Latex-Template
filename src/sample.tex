@@ -1,6 +1,17 @@
-\documentclass{article}
+% !TEX program = lualatex
 
-\title{My First LaTeX Document}
+% Use a Japanese-specific document class.
+% The [lualatex] option is helpful for this class.
+\documentclass[lualatex]{bxjsarticle}
+
+% Load the package for Japanese typesetting with LuaLaTeX
+\usepackage{luatex-ja}
+
+% --- Your other packages can go here ---
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\title{日本語の文書サンプル (Japanese Document Sample)}
 \author{Your Name}
 \date{\today}
 
@@ -8,7 +19,18 @@
 
 \maketitle
 
-\section{Introduction}
-Hello, world! This is my first document created with LaTeX on VS Code.
-Let's try some math: $E = mc^2$.
+\section{はじめに (Introduction)}
+
+これは日本語の文章をタイプセットするためのサンプルです。
+This is a sample for typesetting Japanese text.
+
+UTF-8エンコーディングが直接使えます。例えば、ここに漢字「日」やカタカナ「ラテフ」、ひらがな「こんにちは」を書くことができます。
+
+You can mix it with English text and mathematical formulas seamlessly.
+\[
+    E = mc^2 \quad \text{そして} \quad \zeta(s) = \sum_{n=1}^{\infty} \frac{1}{n^s}
+\]
+
+こんにちは世界！ (Hello, world!)
+
 \end{document}

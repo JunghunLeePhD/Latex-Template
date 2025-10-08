@@ -37,6 +37,9 @@ RUN apt-get update && \
     # ---- Language Support (Optional but recommended) ----
     # For papers in languages other than English
     texlive-lang-european \
+    texlive-lang-cjk \
+    texlive-lang-japanese \
+    texlive-luatex \
     && \
     # Clean up APT cache to keep the image size down
     apt-get clean && \

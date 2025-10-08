@@ -13,8 +13,8 @@
         "latex-workshop.view.pdf.viewer": "tab",
         "latex-workshop.latex.tools": [
           {
-            "name": "latexmk",
-            "command": "latexmk",
+            "name": "lualatex",
+            "command": "lualatex",
             "args": [
               "-synctex=1",
               "-interaction=nonstopmode",
@@ -28,8 +28,8 @@
         ],
         "latex-workshop.latex.recipes": [
           {
-            "name": "latexmk",
-            "tools": ["latexmk"]
+            "name": "lualatex",
+            "tools": ["lualatex"]
           }
         ]
       }
