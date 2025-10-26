@@ -42,6 +42,13 @@ Before you begin, make sure you have the following installed on your system:
 
 3. The [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension for VS Code.
 
+4. Git setting in you local machine
+
+  ```bash
+  git config --global user.email YOUR_EMAIL
+  git config --global user.name YOUR_NAME
+  ```
+
 #### Usage
 
 1. **Clone your new repository** and open it in VS Code.
