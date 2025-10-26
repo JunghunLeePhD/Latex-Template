@@ -3,6 +3,13 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
+  "remoteEnv": {
+    "GIT_SSH_COMMAND": "ssh -o 'IgnoreUnknown UseKeychain'"
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
+  ],
   "customizations": {
     "vscode": {
       "extensions": ["james-yu.latex-workshop"],
