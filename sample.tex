@@ -1,0 +1,27 @@
+\documentclass{article}
+
+\title{My First LaTeX Document}
+\author{Your Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+Hello, world! This is my first document created with LaTeX on VS Code.
+Let's try some math: $E = mc^2$.
+
+This concept was famously introduced by Einstein \cite{einstein}. We can
+learn more about LaTeX itself from "The LaTeX Companion" \cite{latex_companion}.
+
+% --- Add these lines at the end ---
+% This command selects the citation style.
+\bibliographystyle{plain} 
+
+% This command tells LaTeX where to find the references
+% It looks for the file "references.bib"
+\bibliography{references}
+% ------------------------------------
+
+\end{document}
