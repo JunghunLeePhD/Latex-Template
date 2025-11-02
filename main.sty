@@ -1,0 +1,55 @@
+\NeedsTeXFormat{LaTeX2e}
+
+% --- 1. Load Dependencies ---
+% Use \RequirePackage instead of \usepackage inside a .sty file
+\RequirePackage{
+    latexsym,
+    amssymb,
+    amsmath,
+    amsthm,
+    enumitem,
+    mathrsfs,
+    hyperref,
+    fullpage,
+    graphicx, 
+    lineno,
+    amsthm,
+    enumitem,
+    mathrsfs,
+    hyperref,
+    fullpage,
+    graphicx, 
+    booktabs,
+    }
+
+% --- 2. Define Your Custom Commands ---
+% Statement
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}{Conjecture}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{example}{Example}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
+
+\makeatletter % Allow the use of the @ symbol in command names
+% Logical
+\newcommand{\SO}{\quad \textnormal{so} \quad}
+\newcommand{\AND}{\quad \textnormal{and} \quad}
+\newcommand{\OR}{\quad \textnormal{or} \quad}
+
+% Set
+\newcommand{\Set}[2][]{\left\{ #2 \right\}_{#1}}
+\newcommand{\Tuple}[2][]{\left( #2 \right)^{#1}}
+\newcommand{\N}[1][]{\mathbb{N}_{#1}}
+\newcommand{\Z}[1][]{\mathbb{Z}_{#1}}
+\newcommand{\Q}[1][]{\mathbb{Q}_{#1}}
+\newcommand{\R}[1][]{\mathbb{R}_{#1}}
+\newcommand{\C}[1][]{\mathbb{C}_{#1}}
+\newcommand{\PC}{\mathbb{P}^1_{\mathbb{C}}}
+
+\makeatother % Revert the @ symbol to its special status
+
+% --- End of Package ---
+\endinput
