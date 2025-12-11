@@ -1,0 +1,65 @@
+\ProvidesPackage{macros}
+
+% --- 1. Load Dependencies ---
+% Core Math Packages
+\RequirePackage{mathtools} % Loads amsmath + fixes bugs + adds delimiter tools
+\RequirePackage{amssymb}   % Symbols (covers latexsym)
+\RequirePackage{amsthm}    % Theorem environments
+\RequirePackage{mathrsfs}  % Script fonts (\mathscr)
+
+% Formatting & Tools
+\RequirePackage{enumitem}
+\RequirePackage{graphicx}
+\RequirePackage{booktabs}  % Professional tables
+\RequirePackage{lineno}    % Line numbers
+\RequirePackage{fullpage}
+
+% Hyperref (Must be loaded last)
+\RequirePackage[colorlinks=true, linkcolor=blue, citecolor=green, urlcolor=black]{hyperref}
+
+% --- 2. Theorem Environments ---
+% Standard academic formatting:
+% Italic text for Theorems/Lemmas
+% Upright text for Definitions/Remarks
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+% --- 3. Custom Commands (Mathtools Optimized) ---
+
+% Logical Connectors
+% \textnormal ensures the word "so" isn't italicized even inside a Theorem
+\newcommand{\SO}{\quad\textnormal{so}\quad}
+\newcommand{\AND}{\quad\textnormal{and}\quad}
+\newcommand{\OR}{\quad\textnormal{or}\quad}
+
+% --- Paired Delimiters (The Mathtools Upgrade) ---
+% Usage:
+% \Set{x}    -> standard size braces
+% \Set*{x}   -> auto-scaling braces (like \left\{ \right\})
+% \Set[\big]{x} -> manual sizing
+\DeclarePairedDelimiter{\Set}{\{}{\}}
+\DeclarePairedDelimiter{\Tuple}{(}{)}
+\DeclarePairedDelimiter{\Abs}{\lvert}{\rvert} % Bonus: Absolute value
+\DeclarePairedDelimiter{\Norm}{\lVert}{\rVert} % Bonus: Norm
+
+% Number Sets
+\newcommand{\N}[1][]{\mathbb{N}_{#1}}
+\newcommand{\Z}[1][]{\mathbb{Z}_{#1}}
+\newcommand{\Q}[1][]{\mathbb{Q}_{#1}}
+\newcommand{\R}[1][]{\mathbb{R}_{#1}}
+\newcommand{\C}[1][]{\mathbb{C}_{#1}}
+\newcommand{\PC}{\mathbb{P}^1_{\mathbb{C}}}
+
+\endinput
