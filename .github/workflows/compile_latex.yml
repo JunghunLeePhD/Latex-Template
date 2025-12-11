@@ -1,0 +1,30 @@
+name: Build LaTeX PDF
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Compile LaTeX Document
+        uses: xu-cheng/latex-action@v3
+        with:
+          # CHANGE THIS: Replace 'main.tex' with your actual root file name
+          root_file: main.tex 
+          # latexmk is the recommended compiler tool
+          compiler: latexmk
+          # Arguments to ensure non-stop mode (doesn't hang on errors)
+          args: -pdf -file-line-error -interaction=nonstopmode
+
+      - name: Upload PDF Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: compiled-pdf
+          path: main.pdf # This matches the output name of your root_file
