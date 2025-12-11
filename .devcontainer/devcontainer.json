@@ -1,20 +1,32 @@
 {
-  "name": "LaTeX (Standard)",
+  "name": "LaTeX Project",
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "remoteEnv": {
-    "GIT_SSH_COMMAND": "ssh -o 'IgnoreUnknown UseKeychain'"
-  },
-  "mounts": [
-    "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind,consistency=cached",
-    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached"
-  ],
+  "postCreateCommand": "mkdir -p build",
   "customizations": {
     "vscode": {
-      "extensions": ["james-yu.latex-workshop"],
+      "extensions": [
+        "james-yu.latex-workshop",             // Core LaTeX tools
+        "streetsidesoftware.code-spell-checker" // Basic Typo Checker
+      ],
       "settings": {
-        "latex-workshop.latex.formatting.provider": "latexindent",
+        // --- 1. General Editor Settings ---
+        "[latex]": {
+          "editor.defaultFormatter": "james-yu.latex-workshop",
+          "editor.formatOnSave": true
+        },
+        
+        // --- 2. Formatter Configuration ---
+        "latex-workshop.formatting.latex": "latexindent",
+        "latex-workshop.latex.formatting.latexindent.args": [
+          "-c",
+          "%DIR%/",
+          "%TMPFILE%",
+          "-y=defaultIndent: '  '"
+        ],
+
+        // --- 3. Build Configuration ---
         "latex-workshop.latex.autoClean.run": "onBuilt",
         "latex-workshop.latex.autoBuild.run": "onSave",
         "latex-workshop.view.pdf.viewer": "tab",
@@ -27,8 +39,8 @@
               "-interaction=nonstopmode",
               "-file-line-error",
               "-pdf",
-              "-outdir=%WORKSPACE_FOLDER%/output",
-              "-auxdir=%WORKSPACE_FOLDER%/output",
+              "-outdir=build",
+              "-auxdir=build",
               "%DOC%"
             ]
           }
@@ -38,9 +50,22 @@
             "name": "latexmk",
             "tools": ["latexmk"]
           }
+        ],
+
+        // --- 4. Spell Checker (Basic) ---
+        "cSpell.language": "en",
+        "cSpell.ignoreRegExpList": [
+          "\\\\[a-zA-Z]+",
+          "\\$[^\\$]+\\$"
+        ],
+
+        // --- 5. Linter (ChkTeX) ---
+        "latex-workshop.linting.chktex.enabled": true,
+        "latex-workshop.linting.chktex.exec.args": [
+          "-wall",
+          "-n1", "-n8", "-n22", "-n36", "-q"
         ]
       }
     }
   }
 }
-
