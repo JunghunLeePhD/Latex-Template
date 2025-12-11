@@ -1,12 +1,38 @@
-.DS_Store
-
-*/out
-/output
+# --- LaTeX Auxiliary Files ---
+# These are generated during compilation and should not be shared
+/build
 *.aux
 *.bbl
 *.blg
-*.fdb_latexmk
-*.fls
 *.log
-*.pdf
+*.out
+*.toc
+*.lot
+*.lof
 *.synctex.gz
+*.fls
+*.fdb_latexmk
+*.xdv
+*.dvi
+
+# Beamer specific
+*.nav
+*.snm
+*.vrb
+
+# --- Generated PDF ---
+# We ignore the PDF so we don't bloat the history with binary files.
+# The GitHub Action we set up will generate the PDF for you.
+*.pdf
+
+# --- VS Code ---
+.vscode/*
+# Uncomment the following lines if you want to share specific local settings
+# !.vscode/settings.json
+# !.vscode/tasks.json
+# !.vscode/launch.json
+# !.vscode/extensions.json
+
+# --- Operating System Files ---
+.DS_Store
+Thumbs.db
