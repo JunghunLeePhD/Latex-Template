@@ -1,100 +1,219 @@
-# LaTeX Dev Container Template for VS Code
+# Collaborative LaTeX Template
 
-This repository is a GitHub template for creating a complete, lightweight, and reproducible development environment for LaTeX. It is specifically optimized for academic work, with a curated set of packages perfect for mathematical papers and Beamer presentations.
-
-The entire environment is containerized using Docker, which solves the "it works on my machine" problem. This template provides a standard, non-opinionated base, allowing you and your collaborators to use your own preferred editor settings via VS Code's Settings Sync.
+A robust, pre-configured environment for writing mathematical papers using **LaTeX**, **VS Code**, and **DevContainers**. This template is designed to solve the "it works on my machine" problem by providing a consistent TeX Live environment for everyone.
 
 ## ✨ Features
 
-* **Collaboration-Friendly**: Provides a standard base environment without forcing personal editor settings on team members.
+* **Zero-Setup LaTeX:** The entire TeX Live distribution (approx 4GB) is pre-installed in the Docker container. No local installation required.
+* **Auto-Compilation (CI/CD):** Every time you push code to GitHub, a **GitHub Action** automatically builds the PDF to ensure it compiles correctly.
+* **Built-in Tools:**
+    * **LaTeX Workshop:** The gold-standard VS Code extension for IntelliSense and viewing.
+    * **LTeX:** Advanced grammar and spell checking for academic English.
+    * **Latexmk:** Automated build tool configured to keep your directory clean.
+    * **GitGraph:** Visual interface for Git history.
 
-* **Reproducible Environment**: Powered by Docker, it works exactly the same for everyone, every time.
+---
 
-* **Optimized for Speed**: Uses a curated, lightweight TeX Live installation, resulting in much faster build times.
+## 📋 Prerequisites
 
-* **Tailored for Academia**: Includes essential packages for mathematics (`amsmath`), modern bibliography (`biblatex`), and presentations (`beamer`).
+Before you begin, install these three tools. You do **not** need to install LaTeX or TeX Live manually.
 
-* **Clean Project Directory**: All compiled files (PDFs, logs, etc.) are automatically placed in a top-level `output/` folder.
+1.  [**Docker Desktop**](https://www.docker.com/products/docker-desktop/) (Running in the background)
+2.  [**Visual Studio Code**](https://code.visualstudio.com/)
+3.  **Dev Containers Extension** for VS Code (Search `ms-vscode-remote.remote-containers` in the extension store)
 
-* **Seamless VS Code Integration**: Pre-configured with the excellent [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) extension.
+---
 
-## 🚀 Using as a Template
+## 🚀 Getting Started
 
-To start a new project based on this setup, you don't need to fork it.
+1.  **Get the Code:**
+    * Open VS Code.
+    * Press `F1` and select **Git: Clone**.
+    * Paste the repository URL.
 
-1. Click the green **"Use this template"** button at the top of the repository page on GitHub.
+2.  **Enter the Environment:**
+    * Once the folder opens, you will see a popup: *"Folder contains a Dev Container configuration..."*
+    * Click **Reopen in Container**.
+    * *Note:* The first time you do this, it will take ~5-15 minutes to download the full TeX Live distribution.
 
-2. Choose **"Create a new repository"**.
+3.  **Build the PDF:**
+    * Open `main.tex`.
+    * Save the file (`Ctrl+S`).
+    * The PDF will automatically compile to the `build/` folder.
 
-3. Give your new repository a name and description. A fresh copy of this template will be created in your account with a clean git history.
+---
 
-Once your new repository is created, follow the steps below.
+## 🤖 Automation (GitHub Actions)
 
-### Quick Start
+This repository includes a workflow (`.github/workflows/compile_latex.yml`) that acts as a safety net.
 
-#### Prerequisites
+* **When it runs:** Automatically on every `push` to the `main` branch or any Pull Request.
+* **What it does:** It spins up a server, installs LaTeX, and compiles your document from scratch.
+* **Why it matters:** It guarantees that your code works for everyone, not just on your local machine.
+* **Download the PDF:** Go to the **Actions** tab on GitHub, click the latest run, and download the `compiled-pdf` artifact at the bottom.
 
-Before you begin, make sure you have the following installed on your system:
-
-1. [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-
-2. [Visual Studio Code](https://code.visualstudio.com/)
-
-3. The [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension for VS Code.
-
-4. Git setting in you local machine
-
-  ```bash
-  git config --global user.email YOUR_EMAIL
-  git config --global user.name YOUR_NAME
-  ```
-
-#### Usage
-
-1. **Clone your new repository** and open it in VS Code.
-
-2. A notification will appear prompting you to **"Reopen in Container"**. Click it.
-
-3. VS Code will now build the container. This may take a few minutes the first time.
-
-That's it! You can now edit any `.tex` file in the `src/` folder and see the PDF in the `output/` folder update in real-time.
-
-## 🔧 Customization
-
-### Personalizing Your Editor with Settings Sync (Vim Example)
-
-This template intentionally does **not** include personal editor settings like Vim keybindings in its configuration. This ensures that no one on your team has their preferred setup overridden.
-
-The correct way to use your personal settings is with **VS Code Settings Sync**.
-
-1. **Configure Your Local VS Code**: On your main computer (not in the container), open your global `settings.json` (`Preferences: Open User Settings (JSON)` from the Command Palette). Add all your preferred settings here (e.g., your Vim configuration).
-
-2. **Turn On Settings Sync**: Make sure you are logged into your GitHub or Microsoft account in VS Code and that Settings Sync is enabled.
-
-3. **Launch the Container**: When you open this project in the Dev Container, Settings Sync will automatically apply your personal settings and install your preferred extensions (like `VSCodeVim`) for you and only you.
-
-This is the perfect way to have a consistent project environment while giving every collaborator their own personalized editing experience.
-
-### Adding More LaTeX Packages
-
-If you need a specific LaTeX package that isn't included, you will get an error like `File 'somepackage.sty' not found.`.
-
-1. **Find the Debian package name** for it (e.g., search online for "debian package for `somepackage.sty`").
-
-2. **Edit the `Dockerfile`:** Open `.devcontainer/Dockerfile` and add the package name to the `apt-get install` list.
-
-3. **Rebuild the Container:** Run `Dev Containers: Rebuild Container` from the Command Palette.
+---
 
 
-## 📁 Project Structure
+## **📂 Project Structure**
+
+To keep the collaboration clean, please adhere to this file structure:
+
+- `main.tex`: The skeleton file. Loads packages and imports sections. **Do not write content here.**
+
+
+- `sections/`: Write your chapters here (e.g., `01-intro.tex`, `02-proofs.tex`).
+
+
+- `macros.sty`: Define all custom math commands here (e.g., `\newcommand{\R}{\mathbb{R}}`).
+
+
+- `references.bib`: Your BibTeX database.
+
+
+- `figures/`: Place all images and plots here.
+
+---
+## **🤝 Collaboration Workflows**
+
+Choose the guide that matches your experience level.
+
+### **🐣 Workflow A: For Mathematicians (The "Easy" Way)**
+
+*Use this if you want to focus on Math and avoid Git commands.*
+
+**Step 1: Your Personal Workspace**
+
+1. Ask the **Repository Manager** to create a personal branch for you (e.g., `alice-draft`).
+
+
+2. In VS Code, look at the bottom-left corner (it usually says `main`).
+
+
+3. Click it and select your personal branch (`alice-draft`) from the list.
+
+
+4. **Stop.** You stay here forever. Do not switch back to main.
+
+
+
+**Step 2: Saving Your Work** When you finish a section or theorem:
+
+1. Click the **Source Control** icon (Graph with nodes) on the left sidebar.
+
+
+2. Type a short message (e.g., "Finished Lemma 3").
+
+
+3. Click **Commit**.
+
+
+4. Click **Sync Changes** (This sends your work to the cloud and downloads updates).
+
+
+
+**Step 3: Rules**
+
+- **Never** try to fix "Merge Conflicts" yourself. If you see an error, contact the Manager.
+
+
+- **Never** rename files without asking.
+
+
+
+### **🛠️ Workflow B: For Developers (The "Pro" Way)**
+
+*Use this if you are comfortable with CLI, Branching, and CI/CD.*
+
+**Branching Strategy**
+
+- **Protection:** `main` is protected. Direct pushes are blocked.
+
+
+- **Feature Branches:** Create a new branch for every task (`feature/fix-typos`, `feature/add-appendix`).
+
+
+- **Merging:** Use Pull Requests (PR).
+
+
+
+**Rebase Policy**
+
+- **Private Branches:** You may `rebase` your local feature branches before pushing to clean up history.
+
+
+- **Shared Branches:** Do **NOT** rebase any branch a mathematician is working on (e.g., `alice-draft`). It will break their local sync. Use `git merge` instead.
+
+
+
+**Labels** This repo uses a specific taxonomy for PRs. Please tag your PRs accordingly:
+
+- `Content: Proof` / `Content: New Section`
+
+
+- `Math: Needs Check` / `Math: Verified`
+
+---
+## **🛡️ For the Repository Manager**
+
+**How to Sync Mathematicians:** Since they stay on their personal branches, you must manually update them with the latest changes from `main`.
+
+Run this routine periodically:
+
+```bash
+# 1. Update Main
+git checkout main
+git pull origin main
+
+# 2. Update the Mathematician (e.g., Alice)
+git checkout alice-draft
+git pull origin alice-draft  # Get her latest work
+git merge main               # Merge main INTO her branch (Do not rebase!)
+git push origin alice-draft  # Push the update to her
+
+# 3. Return to work
+git checkout main
 ```
-.
-├── .devcontainer/
-│   ├── Dockerfile        # Shared base for both configs (OS, TeX packages)
-│   └── devcontainer.json
-├── src/
-│   └── sample.tex        # Your LaTeX source files go here
-├── output/               # All compiled files go here (ignored by git)
-├── .gitignore
-└── README.md
+
+**Tagging Versions:** When submitting to ArXiv or a Journal, create a tag:
+
+```bash
+git tag v1.0-arxiv
+git push origin v1.0-arxiv
+```
+
+---
+
+## ⚙️ For Developers: Customizing the Environment
+
+If you want to add a new tool or VS Code extension for **the whole team**, do not just install it locally. You must add it to the configuration file so everyone gets it.
+
+### Adding VS Code Extensions
+
+1.  Open `.devcontainer/devcontainer.json`.
+2.  Find the `customizations.vscode.extensions` array.
+3.  Add the "Extension ID" to the list.
+    * *Tip:* Right-click an extension in VS Code sidebar -> **Copy Extension ID**.
+
+```json
+"extensions": [
+    "james-yu.latex-workshop",
+    "streetsidesoftware.code-spell-checker",
+    "your-new-extension-id-here" // <--- Add it here
+]
+```
+
+4. **Rebuild:** Press `F1` -> **Dev Containers: Rebuild Container** to apply changes.
+
+
+
+### **Adding Linux Packages**
+
+If you need a new system tool (e.g., `pandoc`, `python3`), add it to `.devcontainer/Dockerfile`:
+
+```Dockerfile
+RUN apt-get update && apt-get -y install --no-install-recommends \
+    pandoc \
+    python3 \
+    ...
 ```
