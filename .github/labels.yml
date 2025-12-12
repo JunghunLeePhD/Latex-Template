@@ -1,0 +1,51 @@
+# --- Content Type (What kind of math is this?) ---
+- name: "Content: New Section"
+  color: "0e8a16" # Green
+  description: "A completely new chapter, section, or appendix."
+
+- name: "Content: Proof"
+  color: "1d76db" # Blue
+  description: "Adding or rewriting a mathematical proof."
+
+# SHORTENED THIS ONE to fix the error
+- name: "Content: Statement" 
+  color: "1d76db" # Blue
+  description: "Adding core math structures (Def, Lemma, Prop)."
+
+- name: "Content: Discussion"
+  color: "5319e7" # Purple
+  description: "Non-rigorous text, introductions, or conclusions."
+
+- name: "Content: Figures/Plots"
+  color: "d93f0b" # Orange
+  description: "Changes to images, TiKz diagrams, or Python plots."
+
+# --- Maintenance (Cleanup work) ---
+- name: "Maint: Typos/Grammar"
+  color: "fbca04" # Yellow
+  description: "Fixing spelling, punctuation, or sentence flow."
+
+- name: "Maint: Formatting/LaTeX"
+  color: "f06292" # Pink
+  description: "Fixing macros, equation alignment, or overfull hbox."
+
+- name: "Maint: Bibliography"
+  color: "795548" # Brown
+  description: "Adding citations to .bib file."
+
+# --- Review Status (The Manager's Tracking) ---
+- name: "Math: Verified"
+  color: "006b75" # Teal/Green
+  description: "Logic checked and proof holds."
+
+- name: "Math: Needs Check"
+  color: "b60205" # Red
+  description: "Text is written, but logic needs peer review."
+
+- name: "Math: Logic Gap"
+  color: "530000" # Dark Red
+  description: "There is a flaw in the argument that needs fixing."
+
+- name: "Status: WIP"
+  color: "d4c5f9" # Light Grey
+  description: "Work In Progress – Do not merge yet."
